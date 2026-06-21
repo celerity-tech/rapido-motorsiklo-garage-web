@@ -9,7 +9,7 @@ import { JsonLd } from "@/components/seo/json-ld"
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "About — Honest motorcycle repair in Lubao",
+  title: "About — Honest motorcycle parts & services in Lubao",
   description:
     "Meet Rapido Motorsiklo Garage: a Lubao, Pampanga motor shop built on fast, fair, and honest service. Repair, maintenance, parts, motor trade, and motorcycles for sale.",
   alternates: { canonical: "/about" },

@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises"
 import { join } from "node:path"
 
 export const alt =
-  "Rapido Motorsiklo Garage — Quick, honest motorcycle repair in Lubao, Pampanga"
+  "Rapido Motorsiklo Garage — Quick, honest motorcycle parts and services in Lubao, Pampanga"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -15,7 +15,7 @@ const COLORS = {
 
 export default async function Image() {
   const photoData = await readFile(
-    join(process.cwd(), "app", "assets", "shop-front.png")
+    join(process.cwd(), "app", "assets", "compressed-shop-front.png")
   )
   const photoSrc = `data:image/png;base64,${photoData.toString("base64")}`
 
@@ -108,7 +108,7 @@ export default async function Image() {
             }}
           >
             <span>Quick, honest&nbsp;</span>
-            <span style={{ color: COLORS.accent }}>motorcycle repair.</span>
+            <span style={{ color: COLORS.accent }}>motorcycle parts and services.</span>
           </div>
 
           <div
@@ -143,7 +143,7 @@ export default async function Image() {
                 textShadow: "0 2px 12px rgba(0,0,0,0.7)",
               }}
             >
-              Repair · Parts · Bikes for sale
+              Repair · Parts · Motorcycles for sale
             </div>
           </div>
         </div>

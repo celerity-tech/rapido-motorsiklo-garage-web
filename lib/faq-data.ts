@@ -15,7 +15,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "What motorcycles do you service?",
-    a: "We service popular daily-rider motorcycles — commuter bikes, underbones, scooters, and more. Not sure if your motor is covered? Just send us a photo on Facebook and we'll let you know.",
+    a: "We service popular daily-rider motorcycles — commuters, underbones, scooters, and more. Not sure if your motor is covered? Just send us a photo on Facebook and we'll let you know.",
   },
   {
     q: "Do you offer free estimates?",

@@ -18,7 +18,7 @@ const fontMono = Geist_Mono({
 const siteUrl = siteConfig.url;
 const siteName = siteConfig.name;
 const siteTitle =
-  "Rapido Motorsiklo Garage — Quick, honest motorcycle repair in Lubao";
+  "Rapido Motorsiklo Garage — Quick, honest motorcycle parts & services in Lubao";
 const siteDescription =
   "Daily riders trust Rapido Motorsiklo Garage in Lubao, Pampanga for fast, honest motorcycle repair, maintenance, parts, and motorcycles for sale. Message us on Facebook to get help today.";
 

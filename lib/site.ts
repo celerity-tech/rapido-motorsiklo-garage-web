@@ -14,7 +14,7 @@ export const siteConfig = {
   url: siteUrl,
   tagline: "Quick. Honest. Reliable.",
   description:
-    "Motorcycle repair, maintenance, and parts for daily riders in Lubao, Pampanga.",
+    "Motorcycle parts, services, and repair for daily riders in Lubao, Pampanga.",
   location: {
     // Privacy: only the town/province is shown anywhere the address appears as
     // text. The exact street address is intentionally never rendered.

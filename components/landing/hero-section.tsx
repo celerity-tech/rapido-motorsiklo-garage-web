@@ -53,7 +53,7 @@ export function HeroSection() {
           <h1 className="text-balance text-4xl font-black leading-[0.95] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
             Quick, honest{" "}
             <span className="relative inline-block text-primary">
-              motorcycle repair
+              motorcycle parts and services
               <span
                 aria-hidden
                 className="absolute inset-x-0 -bottom-1 h-[6px] bg-accent/80"

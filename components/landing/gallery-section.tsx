@@ -54,7 +54,7 @@ const tiles: GalleryTile[] = [
   {
     tag: "Planned shot",
     caption: "Repair in progress",
-    hint: "Close-up: a mechanic's hands on the engine, bike on the stand",
+    hint: "Close-up: a mechanic's hands on the engine, motorcycle on the stand",
     span: "col-span-1 row-span-1",
   },
   {
