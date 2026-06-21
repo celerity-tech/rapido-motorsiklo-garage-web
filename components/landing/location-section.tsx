@@ -11,7 +11,7 @@ import { FacebookCTA } from "@/components/landing/facebook-cta"
 import { Reveal } from "@/components/landing/reveal"
 import { Section, SectionHeader } from "@/components/landing/section"
 import { Button } from "@/components/ui/button"
-import { siteConfig } from "@/lib/site"
+import { mapsEmbedUrl, siteConfig } from "@/lib/site"
 
 type DetailItem = {
   icon: ComponentType<SVGProps<SVGSVGElement>>
@@ -31,18 +31,27 @@ const details: DetailItem[] = [
     label: "Opening hours",
     value: siteConfig.contact.hours,
   },
-  {
-    icon: IconPhone,
-    label: "Phone",
-    value: siteConfig.contact.phone,
-    href: `tel:${siteConfig.contact.phone}`,
-  },
-  {
-    icon: IconMail,
-    label: "Email",
-    value: siteConfig.contact.email,
-    href: `mailto:${siteConfig.contact.email}`,
-  },
+  // Hidden until provided in siteConfig.
+  ...(siteConfig.contact.phone
+    ? [
+        {
+          icon: IconPhone,
+          label: "Phone",
+          value: siteConfig.contact.phone,
+          href: `tel:${siteConfig.contact.phone}`,
+        },
+      ]
+    : []),
+  ...(siteConfig.contact.email
+    ? [
+        {
+          icon: IconMail,
+          label: "Email",
+          value: siteConfig.contact.email,
+          href: `mailto:${siteConfig.contact.email}`,
+        },
+      ]
+    : []),
 ]
 
 export function LocationSection() {
@@ -63,7 +72,10 @@ export function LocationSection() {
         <Reveal className="md:col-span-2">
           <div className="flex h-full flex-col gap-5 rounded-md border border-border/70 bg-card/60 p-7">
             <ul className="flex flex-col gap-5">
-              {details.map(({ icon: Icon, label, value, href }) => (
+              {details.map(({ icon: Icon, label, value, href }) => {
+                // Only link real values — bracketed placeholders stay plain text.
+                const linkable = href && !value.includes("[")
+                return (
                 <li key={label} className="flex items-start gap-3">
                   <span className="mt-0.5 grid size-9 shrink-0 place-items-center rounded-sm border border-border/70 bg-background/60 text-primary">
                     <Icon className="size-4" aria-hidden />
@@ -72,7 +84,7 @@ export function LocationSection() {
                     <span className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
                       {label}
                     </span>
-                    {href ? (
+                    {linkable ? (
                       <a
                         href={href}
                         className="text-sm font-medium text-foreground/90 transition-colors hover:text-primary"
@@ -86,7 +98,8 @@ export function LocationSection() {
                     )}
                   </div>
                 </li>
-              ))}
+                )
+              })}
             </ul>
 
             <div className="mt-auto flex flex-col gap-3 border-t border-border/60 pt-5">
@@ -112,32 +125,21 @@ export function LocationSection() {
         </Reveal>
 
         <Reveal delay={0.1} className="md:col-span-3">
-          <div className="relative h-full min-h-[360px] overflow-hidden rounded-md border border-border/70 bg-card/40">
-            <div className="bg-grid absolute inset-0" />
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-accent/10"
+          <div className="group relative h-full min-h-[360px] overflow-hidden rounded-md border border-border/70 bg-card/40">
+            <iframe
+              title={`Map showing ${siteConfig.name} in Lubao, Pampanga`}
+              src={mapsEmbedUrl}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full grayscale-[35%] transition-[filter] duration-500 group-hover:grayscale-0"
             />
-            <div className="relative flex h-full flex-col justify-end gap-4 p-7">
-              <div className="inline-flex w-fit items-center gap-2 rounded-sm border border-border/70 bg-background/80 px-3 py-1.5 text-xs font-medium backdrop-blur">
-                <IconMapPin className="size-3.5 text-primary" aria-hidden />
-                Map preview
-              </div>
-              <div className="rounded-sm border border-border/70 bg-background/80 p-5 backdrop-blur">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                  Rapido Motorsiklo Garage
-                </p>
-                <p className="mt-1 text-base font-semibold leading-snug">
-                  {siteConfig.location.street}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {siteConfig.location.city}, {siteConfig.location.region} ·{" "}
-                  {siteConfig.location.postal}
-                </p>
-                <p className="mt-3 text-xs text-muted-foreground">
-                  Embed a Google Maps iframe here once the live map is ready.
-                </p>
-              </div>
+            <div className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-2 rounded-sm border border-border/70 bg-background/85 px-3 py-1.5 text-xs font-medium backdrop-blur">
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/70" />
+                <span className="relative inline-flex size-2 rounded-full bg-primary" />
+              </span>
+              Live location
             </div>
           </div>
         </Reveal>

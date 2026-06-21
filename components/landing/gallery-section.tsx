@@ -56,12 +56,6 @@ export function GallerySection() {
           </Reveal>
         ))}
       </div>
-
-      <Reveal delay={0.2} className="mt-10 text-center">
-        <p className="text-sm text-muted-foreground">
-          Customer reviews and real shop photos coming soon.
-        </p>
-      </Reveal>
     </Section>
   )
 }

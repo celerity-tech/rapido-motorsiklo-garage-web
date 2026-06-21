@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ListingStatus {
+  AVAILABLE
+  RESERVED
+  SOLD
+}
+
+model Listing {
+  id           String        @id @default(uuid())
+  title        String
+  brand        String
+  year         Int
+  price        Int
+  mileageKm    Int           @map("mileage_km")
+  engineCc     Int           @map("engine_cc")
+  transmission String
+  status       ListingStatus @default(AVAILABLE)
+  location     String        @default("Lubao, Pampanga")
+  highlights   String[]
+  featured     Boolean       @default(false)
+  postedAt     DateTime      @default(now()) @map("posted_at")
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+  images       ListingImage[]
+
+  @@map("listings")
+}
+
+model ListingImage {
+  id        String  @id @default(uuid())
+  url       String
+  publicId  String  @map("public_id")
+  position  Int     @default(0)
+  listingId String  @map("listing_id")
+  listing   Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@index([listingId])
+  @@map("listing_images")
+}

@@ -5,6 +5,8 @@ import {
   IconMapPin,
   IconPhone,
 } from "@tabler/icons-react"
+import type { ComponentType, SVGProps } from "react"
+import Link from "next/link"
 
 import { Logo } from "@/components/landing/logo"
 import { Separator } from "@/components/ui/separator"
@@ -12,33 +14,40 @@ import { siteConfig } from "@/lib/site"
 
 const navColumns = [
   {
-    title: "Services",
+    title: "Explore",
     items: [
-      { label: "Motorcycle repair", href: "#services" },
-      { label: "Routine maintenance", href: "#services" },
-      { label: "Parts shop", href: "#parts" },
-      { label: "Motor trade", href: "#parts" },
+      { label: "Home", href: "/" },
+      { label: "Marketplace", href: "/marketplace" },
+      { label: "About", href: "/about" },
+      { label: "Location", href: "/#location" },
     ],
   },
   {
-    title: "Shop",
+    title: "What we do",
     items: [
-      { label: "How it works", href: "#how" },
-      { label: "Why choose us", href: "#why" },
-      { label: "Location", href: "#location" },
-      { label: "FAQ", href: "#faq" },
+      { label: "Services", href: "/#services" },
+      { label: "Parts shop", href: "/#parts" },
+      { label: "Why Rapido", href: "/about#why" },
+      { label: "FAQ", href: "/about#faq" },
     ],
   },
 ]
 
-const contactItems = [
-  {
-    icon: IconMapPin,
-    value: siteConfig.location.full,
-  },
+type ContactItem = {
+  icon: ComponentType<SVGProps<SVGSVGElement>>
+  value: string
+}
+
+const contactItems: ContactItem[] = [
+  { icon: IconMapPin, value: siteConfig.location.full },
   { icon: IconClock, value: siteConfig.contact.hours },
-  { icon: IconPhone, value: siteConfig.contact.phone },
-  { icon: IconMail, value: siteConfig.contact.email },
+  // Hidden until provided in siteConfig.
+  ...(siteConfig.contact.phone
+    ? [{ icon: IconPhone, value: siteConfig.contact.phone }]
+    : []),
+  ...(siteConfig.contact.email
+    ? [{ icon: IconMail, value: siteConfig.contact.email }]
+    : []),
 ]
 
 export function Footer() {
@@ -53,7 +62,7 @@ export function Footer() {
       <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-8 sm:py-16">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
-            <Logo />
+            <Logo className="h-12" />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
               {siteConfig.description} Quick repair, honest pricing, and the
               friendly service daily riders deserve.
@@ -81,12 +90,12 @@ export function Footer() {
               <ul className="flex flex-col gap-2.5">
                 {col.items.map((item) => (
                   <li key={item.label}>
-                    <a
+                    <Link
                       href={item.href}
                       className="text-sm text-foreground/80 transition-colors hover:text-primary"
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

@@ -33,10 +33,10 @@ export function FinalCtaSection() {
           <div className="relative mx-auto flex max-w-2xl flex-col items-center gap-6">
             <Badge variant="accent">Ready when you are</Badge>
             <h2 className="text-balance text-3xl font-black leading-[1.05] tracking-tight sm:text-4xl md:text-5xl">
-              Got a motor issue? Don't wait — message us now.
+              Got a motor issue? Don’t wait — message us now.
             </h2>
             <p className="text-pretty text-base text-muted-foreground sm:text-lg">
-              Tell us what's wrong with your motor. We'll reply on Facebook with
+              Tell us what’s wrong with your motor. We’ll reply on Facebook with
               an honest assessment and a clear next step.
             </p>
 

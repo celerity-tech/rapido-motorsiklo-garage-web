@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Outfit, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import { Toaster } from "@/components/ui/sonner";
+
 const fontSans = Outfit({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -13,18 +15,23 @@ const fontMono = Geist_Mono({
 });
 
 const siteUrl = "https://rapido-motorsiklo-garage-web.vercel.app";
+const siteName = "Rapido Motorsiklo Garage";
 const siteTitle =
   "Rapido Motorsiklo Garage — Quick, honest motorcycle repair in Lubao";
 const siteDescription =
-  "Daily riders trust Rapido Motorsiklo Garage in Lubao, Pampanga for fast, honest motorcycle repair, maintenance, and parts. Message us on Facebook to get help today.";
+  "Daily riders trust Rapido Motorsiklo Garage in Lubao, Pampanga for fast, honest motorcycle repair, maintenance, parts, and motorcycles for sale. Message us on Facebook to get help today.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: siteTitle,
+  title: {
+    default: siteTitle,
+    template: `%s · ${siteName}`,
+  },
   description: siteDescription,
   keywords: [
     "motorcycle repair Lubao",
     "motor parts Pampanga",
+    "motorcycle for sale Pampanga",
     "Rapido Motorsiklo Garage",
     "motorcycle maintenance",
     "motor shop near me",
@@ -36,7 +43,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_PH",
     url: siteUrl,
-    siteName: "Rapido Motorsiklo Garage",
+    siteName,
     title: siteTitle,
     description: siteDescription,
   },
@@ -57,11 +64,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className="dark">
       <body
         className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );
