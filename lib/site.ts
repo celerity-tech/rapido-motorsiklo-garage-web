@@ -1,6 +1,17 @@
+/**
+ * Canonical production origin. Drives metadataBase, canonicals, the sitemap,
+ * robots, JSON-LD, and absolute social-preview URLs. Override per environment
+ * with `NEXT_PUBLIC_SITE_URL`; defaults to the live custom domain. Trailing
+ * slash is stripped so callers can safely append paths.
+ */
+export const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://rapidomotorsiklo.com"
+).replace(/\/$/, "")
+
 export const siteConfig = {
   name: "Rapido Motorsiklo Garage",
   shortName: "Rapido",
+  url: siteUrl,
   tagline: "Quick. Honest. Reliable.",
   description:
     "Motorcycle repair, maintenance, and parts for daily riders in Lubao, Pampanga.",

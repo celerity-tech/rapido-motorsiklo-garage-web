@@ -10,8 +10,10 @@ import { FacebookCTA } from "@/components/landing/facebook-cta"
 import { Reveal } from "@/components/landing/reveal"
 import { Section } from "@/components/landing/section"
 import { ListingsGrid } from "@/components/marketplace/listings-grid"
+import { JsonLd } from "@/components/seo/json-ld"
 import { Badge } from "@/components/ui/badge"
 import { getListings } from "@/lib/listings"
+import { breadcrumbJsonLd, listingsItemListJsonLd } from "@/lib/seo"
 
 export const dynamic = "force-dynamic"
 
@@ -34,6 +36,15 @@ export default async function MarketplacePage() {
 
   return (
     <main id="main" className="relative">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Marketplace", path: "/marketplace" },
+        ])}
+      />
+      {listings.length > 0 && (
+        <JsonLd data={listingsItemListJsonLd(listings)} />
+      )}
       <section className="relative overflow-hidden pt-32 pb-10 sm:pt-36 md:pt-40">
         <div
           aria-hidden

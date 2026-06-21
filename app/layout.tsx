@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Outfit, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import { Toaster } from "@/components/ui/sonner";
+import { siteConfig } from "@/lib/site";
 
 const fontSans = Outfit({
   subsets: ["latin"],
@@ -14,8 +15,8 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 });
 
-const siteUrl = "https://rapido-motorsiklo-garage-web.vercel.app";
-const siteName = "Rapido Motorsiklo Garage";
+const siteUrl = siteConfig.url;
+const siteName = siteConfig.name;
 const siteTitle =
   "Rapido Motorsiklo Garage — Quick, honest motorcycle repair in Lubao";
 const siteDescription =
@@ -58,13 +59,18 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#15151A",
+  colorScheme: "dark",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en-PH" className="dark">
       <body
         className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}
       >

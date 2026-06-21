@@ -16,6 +16,7 @@ import { FacebookCTA } from "@/components/landing/facebook-cta"
 import { Reveal } from "@/components/landing/reveal"
 import { Section } from "@/components/landing/section"
 import { ListingGallery } from "@/components/marketplace/listing-gallery"
+import { JsonLd } from "@/components/seo/json-ld"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -25,6 +26,8 @@ import {
   statusLabels,
 } from "@/lib/listing-utils"
 import { getListingById } from "@/lib/listings"
+import { breadcrumbJsonLd, vehicleJsonLd } from "@/lib/seo"
+import { siteConfig } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
 export const dynamic = "force-dynamic"
@@ -51,16 +54,29 @@ export async function generateMetadata({
     }
   }
 
+  const title = `${listing.year} ${listing.title} - ${formatPrice(listing.price)}`
+  const description = `${listing.year} ${listing.title} for sale — ${formatPrice(
+    listing.price
+  )}, ${formatMileage(listing.mileageKm)}, ${listing.engineCc}cc ${
+    listing.transmission
+  }. Inspected by the mechanics at ${siteConfig.name} in ${
+    listing.location
+  }. Message us on Facebook to reserve or view it.`
+
+  // The Open Graph / Twitter image is supplied by the colocated
+  // opengraph-image.tsx (a generated raster card), so it is intentionally not
+  // set here — that avoids emitting the SVG placeholder, which social platforms
+  // can't render.
   return {
-    title: `${listing.title} - ${formatPrice(listing.price)}`,
-    description: `${listing.year} ${listing.title} for sale at Rapido Motorsiklo Garage in ${listing.location}.`,
+    title,
+    description,
     alternates: {
       canonical: `/marketplace/${listing.id}`,
     },
     openGraph: {
-      title: `${listing.title} - ${formatPrice(listing.price)}`,
-      description: `${listing.year} ${listing.title} for sale at Rapido Motorsiklo Garage.`,
-      images: [{ url: listing.image }],
+      type: "website",
+      title,
+      description,
     },
   }
 }
@@ -79,6 +95,14 @@ export default async function ListingDetailPage({ params }: PageProps) {
 
   return (
     <main id="main" className="relative">
+      <JsonLd data={vehicleJsonLd(listing)} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Marketplace", path: "/marketplace" },
+          { name: listing.title, path: `/marketplace/${listing.id}` },
+        ])}
+      />
       <section className="relative overflow-hidden pt-28 pb-8 sm:pt-32">
         <div
           aria-hidden
