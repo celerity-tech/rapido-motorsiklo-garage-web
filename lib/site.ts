@@ -16,11 +16,15 @@ export const siteConfig = {
   description:
     "Motorcycle repair, maintenance, and parts for daily riders in Lubao, Pampanga.",
   location: {
-    street: "57 St. Dominic Subd. San Roque Arbol",
-    city: "Lubao, Pampanga",
-    region: "Philippines",
+    // Privacy: only the town/province is shown anywhere the address appears as
+    // text. The exact street address is intentionally never rendered.
+    display: "Lubao, Pampanga",
+    city: "Lubao",
+    region: "Pampanga",
     postal: "2005",
-    full: "57 St. Dominic Subd. San Roque Arbol Lubao Pampanga, Lubao, Philippines, 2005",
+    // Exact address used ONLY to anchor the embedded map pin — never shown as text.
+    mapQuery:
+      "57 St. Dominic Subd. San Roque Arbol Lubao Pampanga, Lubao, Philippines, 2005",
   },
   contact: {
     facebook: "https://www.facebook.com/profile.php?id=61579675523106",
@@ -35,9 +39,10 @@ export const siteConfig = {
 } as const
 
 /**
- * Google Maps embed URL (no API key required). Built from the full address so
- * the live map preview always matches `location.full`.
+ * Google Maps embed URL (no API key required). Built from the exact `mapQuery`
+ * so the live map still pins the shop precisely, even though the address is
+ * never shown as text.
  */
 export const mapsEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(
-  siteConfig.location.full
+  siteConfig.location.mapQuery
 )}&output=embed`

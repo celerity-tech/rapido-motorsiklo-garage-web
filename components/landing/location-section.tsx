@@ -24,7 +24,7 @@ const details: DetailItem[] = [
   {
     icon: IconMapPin,
     label: "Address",
-    value: siteConfig.location.full,
+    value: siteConfig.location.display,
   },
   {
     icon: IconClock,

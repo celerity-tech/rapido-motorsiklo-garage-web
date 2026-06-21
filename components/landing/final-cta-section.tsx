@@ -51,7 +51,7 @@ export function FinalCtaSection() {
               ))}
             </ul>
             <p className="text-xs text-muted-foreground/80">
-              {siteConfig.location.full}
+              {siteConfig.location.display}
             </p>
           </div>
         </div>

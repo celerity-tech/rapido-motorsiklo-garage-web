@@ -11,7 +11,7 @@ export type Faq = {
 export const faqs: Faq[] = [
   {
     q: "Where is Rapido Motorsiklo Garage located?",
-    a: "We're located at 57 St. Dominic Subd. San Roque Arbol, Lubao, Pampanga, 2005, Philippines. Walk-ins are welcome — or message us on Facebook so we can prepare for your visit.",
+    a: "We're in Lubao, Pampanga. Walk-ins are welcome — message us on Facebook for the exact pin and directions, or so we can prepare for your visit.",
   },
   {
     q: "What motorcycles do you service?",

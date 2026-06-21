@@ -39,7 +39,7 @@ type ContactItem = {
 }
 
 const contactItems: ContactItem[] = [
-  { icon: IconMapPin, value: siteConfig.location.full },
+  { icon: IconMapPin, value: siteConfig.location.display },
   { icon: IconClock, value: siteConfig.contact.hours },
   // Hidden until provided in siteConfig.
   ...(siteConfig.contact.phone

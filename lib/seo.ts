@@ -47,9 +47,10 @@ export const localBusinessJsonLd = (): Record<string, unknown> => ({
   image: ogImageUrl,
   logo: ogImageUrl,
   description: siteConfig.description,
+  // Street address intentionally omitted for privacy — only the town/province
+  // is published. The embedded map still pins the exact spot for visitors.
   address: {
     "@type": "PostalAddress",
-    streetAddress: "57 St. Dominic Subd. San Roque Arbol",
     addressLocality: "Lubao",
     addressRegion: "Pampanga",
     postalCode: siteConfig.location.postal,
